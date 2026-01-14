@@ -1,22 +1,7 @@
 $script:self = $PSScriptRoot
-$script:httplib = "$self\dotnet-http.dll";
-$script:pwshlib = "$self\main.dll";
 
-# $httplib = [IO.File]::ReadAllBytes("$self\dotnet-http.dll");
-# $pwshlib = [IO.File]::ReadAllBytes("$self\main.dll");
-# [System.Reflection.Assembly]::Load($httplib);
-# [System.Reflection.Assembly]::Load($pwshlib);
-
-# Add-Type -Path "$self\dotnet-http.dll"
-# Add-Type -Path "$self\main.dll"
-
-$script:htmp = Join-Path $env:TEMP ("dotnet-http_" + [guid]::NewGuid() + ".dll")
-$script:mtmp = Join-Path $env:TEMP ("main_" + [guid]::NewGuid() + ".dll")
-Copy-Item $script:httplib $script:htmp -Force
-Copy-Item $script:pwshlib $script:mtmp -Force
-
-Add-Type -Path $script:htmp
-Add-Type -Path $script:mtmp
+Add-Type -Path $httplib
+Add-Type -Path $pwshlib
 
 function get-http1 {
     param ( [int]$port );
@@ -63,3 +48,9 @@ function get-http {
 
     return $http;
 }
+
+function clog {
+    param ( [byte]$color, [Parameter(ValueFromRemainingArguments=$true)] [string[]] $msg )
+    Write-Output "`e[38;5;$($color)m$($msg -Join " ")`e[0m"
+}
+
