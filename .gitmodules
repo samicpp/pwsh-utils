@@ -1,0 +1,3 @@
+[submodule "dotnet-http"]
+        path = dotnet-http
+        url = https://github.com/samicpp/dotnet-http
