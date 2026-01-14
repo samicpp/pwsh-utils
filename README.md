@@ -1,2 +1,3 @@
 # pwsh-utils
-a bunch of stuff to add to your pwsh profile
+a bunch of stuff to add to your pwsh profile <br/>
+i made this because i wanted some extra "toys" in my powershell environment <br/>
