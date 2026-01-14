@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Index of {path}</title>
+    <style>
+        @import url("/dirindex.css");
+        @import url("dirindex.css");
+
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #111;
+            font-size: 1.3em;
+        }
+
+        li.dir a::after{
+            content: "/";
+        }
+
+        a{
+            --clr: aliceblue;
+
+            color: var(--clr);
+            text-decoration: none;
+            border-bottom: solid 0.01em var(--clr);
+        }
+        a:visited{
+            border-bottom: none;
+        }
+        a:hover{
+            font-weight: bold;
+        }
+
+        li.entry{
+            /* transition: transform 0.1s ease; */
+        }
+        li.entry:has(a:hover) {
+            /* transform: scale(1.1); */
+        }
+
+        li.file a{
+            --clr: #00f7ff;
+        }
+
+        li.dir a{
+            --clr: #00ff6a;
+        }
+
+        li.unknown a{
+            --clr: #ffbf00;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <a class="parent" href="..">parent</a> <br/>
+    <ul>
+    </ul>
+</body>
+</html>
