@@ -1,7 +1,10 @@
-$script:self = $PSScriptRoot
-
 Add-Type -Path $httplib
 Add-Type -Path $pwshlib
+
+
+$script:self = $PSScriptRoot
+$script:start = [System.DateTime]::now;
+$script:style = [Samicpp.Pwsh.UXStyle]::new($host, $PSVersionTable);
 
 function get-http1 {
     param ( [int]$port );
@@ -32,12 +35,14 @@ function serve-dir {
     [Samicpp.Pwsh.IHandler]::Serve($hand, $chan).Wait();
 }
 
+
+
 function start-server{
     param ( [int]$port );
     $chan = [Samicpp.Pwsh.Utils]::ServeHttp($port);
 
     return $chan;
-}
+}    
 
 function get-http {
     param ( [System.Threading.Channels.Channel`1[Samicpp.Http.IDualHttpSocket]]$chan )
@@ -47,10 +52,16 @@ function get-http {
     $chan.Reader.TryRead([ref]$http) | Out-Null;
 
     return $http;
-}
+}    
 
 function clog {
-    param ( [byte]$color, [Parameter(ValueFromRemainingArguments=$true)] [string[]] $msg )
-    Write-Output "`e[38;5;$($color)m$($msg -Join " ")`e[0m"
-}
+    param ( [byte]$color, [Parameter(ValueFromRemainingArguments=$true)] [string[]] $msg );
+    Write-Output "`e[38;5;$($color)m$($msg -Join " ")`e[0m";
+}    
 
+[System.Console]::WriteLine("`e[38;5;30m" + $script:start.ToString("dddd, MMMM dd yyyy HH:mm") + "`e[0m");
+
+function prompt{
+    $his = Get-History -Count 1;
+    return $script:style.prompt($pwd, $his);
+}

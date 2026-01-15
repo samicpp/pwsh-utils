@@ -264,17 +264,23 @@ public class SimpleServe: IHandler
                     border-bottom: solid 0.01em var(--clr);
                 {"}"}
                 a:visited{"{"}
-                    border-bottom: none;
+                    border-bottom-color: transparent;
                 {"}"}
                 a:hover{"{"}
                     font-weight: bold;
                 {"}"}
 
                 li.entry{"{"}
-                    /* transition: transform 0.1s ease; */
+                    line-height: 1.4;
+                    width: fit-content;
                 {"}"}
                 li.entry:has(a:hover) {"{"}
-                    /* transform: scale(1.1); */
+                    transform: scale(1.05);
+                {"}"}
+                li.entry::marker{"{"}
+                    color: #333;
+                    font-size: 0.6em;
+                    content: "///  ";
                 {"}"}
 
                 li.file a{"{"}
@@ -294,7 +300,7 @@ public class SimpleServe: IHandler
         </head>
         <body>
             <a class="parent" href="..">parent</a> <br/>
-            <ul>
+            <ul class="entries">
         """);
         foreach (string file in files!) 
         {
