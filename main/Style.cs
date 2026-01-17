@@ -45,7 +45,7 @@ public class UXStyle(PSHost host, PSVersionHashTable version)
             if (dur.Days > 0) timestamp += $"{dur.Days}d ";
             if (dur.Hours > 0) timestamp += $"{dur.Hours}h ";
             if (dur.Minutes > 0) timestamp += $"{dur.Minutes}m ";
-            timestamp += $"{Math.Round(dur.TotalSeconds, 3)}s ";
+            timestamp += $"{Math.Round(dur.TotalSeconds, 3) % 60}s ";
 
         }
 
